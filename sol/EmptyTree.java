@@ -19,4 +19,23 @@ public class EmptyTree implements IBST {
         return "src.EmptyTree";
     }
 
+    @Override
+    public int sumBst() {
+        return 0;
+    }
+
+    @Override
+    public int depthBst() {
+        return 0;
+    }
+
+    @Override
+    public boolean hasElt(int search) {
+        return false;
+    }
+
+    @Override
+    public IBST addElt(int insert) {
+        return new NodeTree(insert, new EmptyTree(), new EmptyTree());
+    }
 }

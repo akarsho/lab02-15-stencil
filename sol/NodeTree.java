@@ -2,6 +2,8 @@ package sol;
 
 import src.IBST;
 
+import static java.lang.Math.max;
+
 /**
  * A NodeTree
  */
@@ -51,7 +53,51 @@ public class NodeTree implements IBST {
         return builder;
     }
 
+    public int sumBst() {
+        return this.val + this.left.sumBst() + this.right.sumBst();
+    }
 
+    @Override
+    public int depthBst() {
+        return 1 + max(this.left.depthBst(), this.right.depthBst());
+    }
+
+    @Override
+    public boolean hasElt(int search) {
+        if(search == this.val) {
+            return true;
+        } else {
+            if (search < this.val) {
+                return this.left.hasElt(search);
+            } else {
+                return this.right.hasElt(search);
+            }
+        }
+    }
+
+    @Override
+    public IBST addElt(int insert) {
+        // assume that duplicate values will be inserted in the left subtree
+        if(insert <= this.val) {
+            // go left, if empty then add value
+            if(this.left.depthBst() == 0) {
+                this.left = new NodeTree(insert, new EmptyTree(), new EmptyTree());
+            } else {
+                // if not empty continue the function for the left subtree
+                return this.left.addElt(insert);
+            }
+        } else {
+            //go right, if empty then add value
+            if(this.right.depthBst() == 0){
+                this.right = new NodeTree(insert, new EmptyTree(), new EmptyTree());
+            } else {
+                // if not empty then continue the function for the right subtree
+                return this.right.addElt(insert);
+            }
+        }
+        // always return root
+        return this;
+    }
 
 
 }
