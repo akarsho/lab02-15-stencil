@@ -77,8 +77,11 @@ public class NodeTree implements IBST {
 
     @Override
     public IBST addElt(int insert) {
-        // assume that duplicate values will be inserted in the left subtree
-        if(insert <= this.val) {
+        // if value is already in tree then return just the thingy
+        if(this.hasElt(insert)) {
+            return this; // unchanged tree
+        }
+        if(insert < this.val) {
             // go left, if empty then add value
             if(this.left.depthBst() == 0) {
                 this.left = new NodeTree(insert, new EmptyTree(), new EmptyTree());
@@ -86,7 +89,7 @@ public class NodeTree implements IBST {
                 // if not empty continue the function for the left subtree
                 return this.left.addElt(insert);
             }
-        } else {
+        } else if(insert > this.val) {
             //go right, if empty then add value
             if(this.right.depthBst() == 0){
                 this.right = new NodeTree(insert, new EmptyTree(), new EmptyTree());
@@ -95,7 +98,7 @@ public class NodeTree implements IBST {
                 return this.right.addElt(insert);
             }
         }
-        // always return root
+        // always return root of tree no matter what operation, change or unchange
         return this;
     }
 
