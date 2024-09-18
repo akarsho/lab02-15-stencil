@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Node;
 import src.IBST;
+import src.IExpression;
 
 public class BSTTest {
     private IBST t1;
@@ -13,6 +14,8 @@ public class BSTTest {
     private IBST t3;
     private IBST t4;
     private IBST t5;
+
+    private IExpression exp1;
 
     // TODO: declare more test BSTs
 
@@ -34,6 +37,12 @@ public class BSTTest {
                 new NodeTree(6, new NodeTree(3, new EmptyTree(), new EmptyTree()),
                         new NodeTree(10,new EmptyTree(), new EmptyTree())),
                 new NodeTree(8, new EmptyTree(), new EmptyTree())));
+    }
+
+    @Before
+    public void expressionSetup() {
+        // 5
+        exp = Number
     }
 
     // TODO: write more tests
